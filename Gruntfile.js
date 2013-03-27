@@ -18,6 +18,11 @@ module.exports = function(grunt) {
 			},
 
 			all: ["test/*_spec.js"]
+		},
+
+		phplint: {
+			good: ["test/rsrc/*-good.php"],
+			bad: ["test/rsrc/*-fail.php"]
 		}
 	};
 
@@ -25,6 +30,7 @@ module.exports = function(grunt) {
 
 	grunt.loadNpmTasks("grunt-contrib-jshint");
 	grunt.loadNpmTasks("grunt-simple-mocha");
+	grunt.loadTasks("./tasks");
 
 	grunt.registerTask("default", ["jshint:all", "simplemocha:all"]);
 };
