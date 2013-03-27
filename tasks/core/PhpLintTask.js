@@ -17,7 +17,7 @@ PhpLintTask.prototype = {
 			done = this.async();
 
 		var lintFile = function(filePath, cb) {
-			var linter = new PhpLintCommandWrapper(this.options);
+			var linter = new PhpLintCommandWrapper(self.options);
 
 			linter.lintFile(filePath, function(err, output) {
 				// Get rid of trailing \n
@@ -27,6 +27,10 @@ PhpLintTask.prototype = {
 
 				grunt.verbose.write(filePath.cyan + ": " + output + "...");
 				if(err) {
+					if (output === "") {
+						output = err.message;
+					}
+					
 					grunt.verbose.error();
 					grunt.fail.warn(output);
 				}

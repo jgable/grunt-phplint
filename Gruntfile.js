@@ -22,7 +22,15 @@ module.exports = function(grunt) {
 
 		phplint: {
 			good: ["test/rsrc/*-good.php"],
-			bad: ["test/rsrc/*-fail.php"]
+			bad: ["test/rsrc/*-fail.php"],
+
+			explicit: {
+				options: {
+					phpCmd: "/usr/bin/php"
+				},
+
+				src: ["test/rsrc/*-good.php"]
+			}
 		}
 	};
 

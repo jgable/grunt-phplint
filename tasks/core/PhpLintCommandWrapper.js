@@ -19,8 +19,7 @@ var PhpLintCommandWrapper = function(options) {
 PhpLintCommandWrapper.prototype = {
 
 	lintFile: function(filePath, done) {
-		var self = this,
-			cmdArgs = this._parseOptions(this.options.phpArgs),
+		var cmdArgs = this._parseOptions(this.options.phpArgs),
 			phpLintCmd = spawn(this.options.phpCmd, cmdArgs.concat([filePath])),
 			output = "";
 
