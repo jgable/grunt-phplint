@@ -24,7 +24,9 @@ grunt.registerTask("default", ["phplint:good"]);
 
 ### Options
 
-By default we assume that the `php` command is in your path, if not, you can specify the full path to php like the example below.  You can also pass additional flags, like '-lf'
+By default we assume that the `php` command is in your path, if not, you can specify the full path to php like the example below.  You can also pass additional flags, like '-lf'.
+
+Lastly, if you want to limit the number of files we process at a time, set the spawnLimit.
 
 ```javascript
 var cfg = {
@@ -32,8 +34,9 @@ var cfg = {
 		options: {
 			phpCmd: "/usr/bin/php", // Or "c:\EasyPHP-5.3.8.1\PHP.exe"
 			phpArgs: {
-				"-lf": null
-			}
+				"-l": null
+			},
+			spawnLimit: 10
 		},
 
 		good: ["test/rsrc/*-good.php"],

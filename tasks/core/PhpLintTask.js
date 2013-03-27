@@ -5,7 +5,9 @@ var grunt = require("grunt"),
 var PhpLintCommandWrapper = require("./PhpLintCommandWrapper");
 
 function PhpLintTask(task) {
-	this.options = task.options();
+	this.options = task.options({
+		spawnLimit: 10
+	});
 	this.files = task.filesSrc;
 	this.async = task.async;
 }
@@ -30,7 +32,7 @@ PhpLintTask.prototype = {
 					if (output === "") {
 						output = err.message;
 					}
-					
+
 					grunt.verbose.error();
 					grunt.fail.warn(output);
 				}
@@ -40,7 +42,7 @@ PhpLintTask.prototype = {
 			});
 		};
 
-		async.forEach(this.files, lintFile, function(err) {
+		async.forEachLimit(this.files, this.options.spawnLimit, lintFile, function(err) {
 			if(err) {
 				return grunt.fail.warn(err);
 			}
