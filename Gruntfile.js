@@ -22,6 +22,14 @@ module.exports = function(grunt) {
 
 		phplint: {
 			good: ["test/rsrc/*-good.php"],
+			good_nocache: {
+				options: {
+					cache: false
+				},
+				files: {
+					src: ["test/rsrc/*-good.php"]
+				}
+			},
 			bad: ["test/rsrc/*-fail.php"],
 
 			explicit: {
@@ -40,5 +48,5 @@ module.exports = function(grunt) {
 	grunt.loadNpmTasks("grunt-simple-mocha");
 	grunt.loadTasks("./tasks");
 
-	grunt.registerTask("default", ["jshint:all", "simplemocha:all", "phplint:good"]);
+	grunt.registerTask("default", ["jshint:all", "simplemocha:all", "phplint:good", "phplint:good_nocache"]);
 };

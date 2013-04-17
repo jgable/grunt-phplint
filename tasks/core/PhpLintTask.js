@@ -81,6 +81,7 @@ PhpLintTask.prototype = {
 
 				// Skip the caching if it's not necessary.
 				if(!self.options.cache) {
+					grunt.verbose.write(filePath.cyan + ": " + output + "...");
 					grunt.verbose.ok();
 					return cb();
 				}
