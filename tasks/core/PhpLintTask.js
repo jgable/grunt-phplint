@@ -16,7 +16,8 @@ function PhpLintTask(task) {
 
 	this.options = task.options({
 		spawnLimit: 10,
-		swapPath: os.tmpDir()
+		swapPath: os.tmpDir(),
+		cache: true
 	});
 	this.files = task.filesSrc;
 	this.async = task.async;
@@ -78,6 +79,12 @@ PhpLintTask.prototype = {
 					return cb(err);
 				}
 
+				// Skip the caching if it's not necessary.
+				if(!self.options.cache) {
+					grunt.verbose.ok();
+					return cb();
+				}
+
 				// Add to the cached swap so we don't have to lint unchanged files again
 				self.swap.addCached(SWAP_CATEGORY, hash, "", function(err) {
 					grunt.verbose.write(filePath.cyan + ": " + output + "...");
@@ -94,6 +101,10 @@ PhpLintTask.prototype = {
 
 	_checkCached: function(filePath, done) {
 		var self = this;
+
+		if(!this.options.cache) {
+			return done(null, false);
+		}
 
 		fs.readFile(filePath, function(err, contents) {
 			if(err) {
