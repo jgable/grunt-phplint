@@ -35,11 +35,11 @@ PhpLintTask.prototype = {
 			done = this.async();
 
 		async.forEachLimit(this.files, this.options.spawnLimit, this._lintFile, function(err) {
-			if(err) {
-				return grunt.fail.warn(err);
-			}
-
 			grunt.log.ok(self.files.length + " files php linted.");
+
+			if(err) {
+				done(false);
+			}
 
 			done();
 		});
@@ -74,7 +74,7 @@ PhpLintTask.prototype = {
 					}
 
 					grunt.verbose.error();
-					grunt.fail.warn(output);
+					grunt.log.error(output);
 
 					return cb(err);
 				}
@@ -90,7 +90,7 @@ PhpLintTask.prototype = {
 				self.swap.addCached(SWAP_CATEGORY, hash, "", function(err) {
 					grunt.verbose.write(filePath.cyan + ": " + output + "...");
 					if(err) {
-						return cb(err);
+						grunt.fail.warn(err);
 					}
 
 					grunt.verbose.ok();
