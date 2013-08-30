@@ -39,6 +39,7 @@ PhpLintTask.prototype = {
 
 			if(err) {
 				done(false);
+				return;
 			}
 
 			done();
