@@ -21,6 +21,13 @@ module.exports = function(grunt) {
 		},
 
 		phplint: {
+			options: {
+			    phpArgs: {
+				"-l": null,
+				"--define": "short_open_tag=Off"
+			    },
+			    
+			},
 			good: ["test/rsrc/*-good.php"],
 			good_nocache: {
 				options: {
