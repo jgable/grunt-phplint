@@ -36,7 +36,8 @@ PhpLintTask.prototype = {
 
 		async.forEachLimit(this.files, this.options.spawnLimit, this._lintFile, function(err) {
 			if(err) {
-				return grunt.fail.warn(err);
+				grunt.fail.warn(err);
+				return done();
 			}
 
 			grunt.log.ok(self.files.length + " files php linted.");
