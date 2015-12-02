@@ -1,6 +1,6 @@
 {
   "name": "grunt-phplint",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "A Grunt 4.0 task for running phplint on your php files",
   "main": "Gruntfile.js",
   "directories": {
