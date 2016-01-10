@@ -1,5 +1,7 @@
 
 module.exports = function(grunt) {
+	'use strict';
+
 	var cfg = {
 		jshint: {
 			options: {

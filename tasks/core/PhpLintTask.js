@@ -1,3 +1,6 @@
+
+'use strict';
+
 var os = require("os"),
 	fs = require("fs"),
 	crypto = require("crypto");
@@ -116,7 +119,7 @@ PhpLintTask.prototype = {
 			var sha1 = crypto.createHash("sha1"),
 				fileHash = sha1.update(contents.toString()).digest("hex");
 
-			self.swap.hasCached(SWAP_CATEGORY, fileHash, function(isCached, cachedPath) {
+			self.swap.hasCached(SWAP_CATEGORY, fileHash, function(isCached) {
 				done(null, isCached, fileHash);
 			});
 		});
