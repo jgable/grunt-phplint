@@ -1,1 +1,5 @@
-node_modules
+
+/node_modules/
+
+# Exclude the generated file of `npm pack`.
+/grunt-phplint-*.tgz
