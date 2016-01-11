@@ -1,9 +1,10 @@
 
+'use strict';
+
 var spawn = require("child_process").spawn;
 
 var grunt = require("grunt"),
-	_ = grunt.util._,
-	async = grunt.util.async;
+	_ = grunt.util._;
 
 var defaults = {
 	phpCmd: "php",
