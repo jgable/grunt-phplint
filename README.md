@@ -33,7 +33,6 @@ var cfg = {
 	phplint: {
 		options: {
 			phpArgs: {
-				"-l": null,
 				"-d": null,
 				"-f": null,
 				"-c": "/usr/local/my-debug-config.ini"
@@ -52,7 +51,6 @@ var cfg = {
 	phplint: {
 		options: {
 			phpArgs: {
-				"-l": null,
 				"-d": null,
 				"-f": null,
 				"-d": ["display_errors", "display_startup_errors"]
@@ -72,10 +70,7 @@ Lastly, if you want to limit the number of files we process at a time, set the s
 var cfg = {
 	phplint: {
 		options: {
-			phpCmd: "/usr/bin/php", // Or "c:\EasyPHP-5.3.8.1\PHP.exe"
-			phpArgs: {
-				"-l": null
-			},
+			phpCmd: "/usr/bin/php", // Or "c:\EasyPHP-5.3.8.1\PHP.exe".
 			spawnLimit: 10
 		},
 

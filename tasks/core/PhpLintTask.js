@@ -20,8 +20,13 @@ function PhpLintTask(task) {
 	this.options = task.options({
 		spawnLimit: 10,
 		swapPath: os.tmpDir(),
-		cache: true
+		cache: true,
+		phpCmd: 'php'
 	});
+
+	this.options.phpArgs = this.options.phpArgs || {};
+	this.options.phpArgs['-l'] = null;
+
 	this.files = task.filesSrc;
 	this.async = task.async;
 
