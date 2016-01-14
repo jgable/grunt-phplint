@@ -2,26 +2,7 @@
 module.exports = function(grunt) {
 	'use strict';
 
-	var cfg = {
-		jshint: {
-			options: {
-				boss: true,
-				node: true
-			},
-
-			all: ["tasks/**/*.js", "test/**/*.js", "Gruntfile.js"]
-		},
-
-		simplemocha: {
-			options: {
-				reporter: "spec",
-				ui: "bdd",
-				compilers: "coffee:coffee-script"
-			},
-
-			all: ["test/*_spec.js"]
-		},
-
+	grunt.initConfig({
 		phplint: {
 			good: ["test/rsrc/*-good.php"],
 			good_nocache: {
@@ -42,13 +23,8 @@ module.exports = function(grunt) {
 				src: ["test/rsrc/*-good.php"]
 			}
 		}
-	};
+	});
 
-	grunt.initConfig(cfg);
-
-	grunt.loadNpmTasks("grunt-contrib-jshint");
-	grunt.loadNpmTasks("grunt-simple-mocha");
 	grunt.loadTasks("./tasks");
-
-	grunt.registerTask("default", ["jshint:all", "simplemocha:all", "phplint:good", "phplint:good_nocache"]);
+	grunt.registerTask("default", ["phplint:good", "phplint:good_nocache"]);
 };

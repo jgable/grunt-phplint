@@ -6,9 +6,6 @@
   "directories": {
     "test": "test"
   },
-  "scripts": {
-    "test": "mocha"
-  },
   "repository": {
     "type": "git",
     "url": "https://github.com/jgable/grunt-phplint.git"
@@ -23,13 +20,17 @@
   "author": "Jacob Gable <jacob.gable@gmail.com>",
   "license": "MIT",
   "devDependencies": {
-    "grunt-simple-mocha": "~0.3.2",
-    "should": "~1.2.2",
-    "mocha": "~1.8.2",
-    "grunt-contrib-jshint": "~0.3.0"
+    "jshint": "^2.8.0",
+    "mocha": "~2.3.4",
+    "should": "~8.1.1"
   },
   "dependencies": {
     "grunt": "~0.4.1",
-    "cache-swap": "~0.0.2"
+    "cache-swap": "~0.2.3"
+  },
+  "scripts": {
+    "test": "npm run lint && mocha",
+    "lint": "npm run lint-jshint",
+    "lint-jshint": "jshint 'tasks/' 'test/'"
   }
 }
