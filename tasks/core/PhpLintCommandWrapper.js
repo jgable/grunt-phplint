@@ -6,15 +6,8 @@ var spawn = require("child_process").spawn;
 var grunt = require("grunt"),
 	_ = grunt.util._;
 
-var defaults = {
-	phpCmd: "php",
-	phpArgs: {
-		"-l": null
-	}
-};
-
 var PhpLintCommandWrapper = function(options) {
-	this.options = _.defaults(options || {}, defaults);
+	this.options = options;
 };
 
 PhpLintCommandWrapper.prototype = {
@@ -53,14 +46,17 @@ PhpLintCommandWrapper.prototype = {
 			currKey = "";
 			pushVal = function(v) {
 				newOpts.push(currKey);
-				if (v) {
+				if (v !== null) {
 					newOpts.push(v);
 				}
 			};
 
 			_.each(opts, function(val, key) {
-				currKey = key;
+				if (val === false) {
+					return;
+				}
 
+				currKey = key;
 				if(_.isArray(val)) {
 					// Push an array of values
 					_.each(val, pushVal);
