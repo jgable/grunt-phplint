@@ -1,0 +1,4 @@
+Running "phplint-report-original:subjects" (phplint-report-original) task
+>> There is no result to create a report from
+
+Done, without errors.

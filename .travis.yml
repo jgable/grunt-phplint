@@ -1,0 +1,32 @@
+
+language: 'php'
+php: '7.0'
+
+services:
+  - 'redis-server'
+  - 'mongodb'
+
+before_install:
+  - 'rvm install $(cat .ruby-version)'
+  - 'rvm use --default $(cat .ruby-version)'
+
+  - 'nvm install $(cat .nvmrc)'
+  - 'nvm use'
+
+install:
+  - 'gem install bundler'
+
+  - 'npm install -g grunt-cli'
+  - 'npm install'
+
+before_script:
+ - 'npm run get-started'
+
+script:
+  - 'php -v'
+  - 'phpenv versions'
+  - 'npm run lint'
+  - 'npm run test'
+
+after_script:
+  - './node_modules/.bin/istanbul report text'

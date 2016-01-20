@@ -1,0 +1,5 @@
+Running "phplint-lint:empty:no-cache" (phplint-lint) task
+
+Running "phplint-report-original:subjects" (phplint-report-original) task
+
+Done, without errors.

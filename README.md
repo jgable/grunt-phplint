@@ -1,105 +1,244 @@
-grunt-phplint
-=============
+# grunt-phplint
 
 A Grunt task for linting your php.  A simple wrapper around the `php -l <filename>` command.
 
-### Example Gruntfile
+**Main features:**
 
+* Multiple PHP version is supported
+* Async
+* Cache
+
+The linting process done by 3 different Grunt tasks.
+
+0. **phplint-lint** - Run the `php -l` command against the selected files and 
+   store the result.
+0. **phplint-report-original** - Create a human readable report from the stored
+   lint result. As the name of the task suggest that the structure of the report
+   is the same as the original output of the `php -l`.
+   This is the only reporter shipped with this package, but you can easily 
+   create a custom reporter.
+0. **phplint-check** - The previous two tasks has no influence over the exit 
+   codes. With this task you can abort the build process if the stored result
+   contains any error.
+
+
+## Example Gruntfile
+
+Minimal configuration:
 ```javascript
-var cfg = {
-	phplint: {
-		good: ["test/rsrc/*-good.php"],
-		bad: ["test/rsrc/*-fail.php"]
-	}
-};
+grunt.initConfig({
+  'phplint-lint': {
+    source: {
+      files: [
+        {
+          src: [
+            'source/**/*.php'
+          ]
+        }
+      ]
+    }
+  },
+  'phplint-report-original': {
+    source: {}
+  },
+  'phplint-check': {
+    source: {}
+  }
+});
 
-grunt.initConfig(cfg);
-
-grunt.loadNpmTasks("grunt-phplint");
-
-grunt.loadTasks("./tasks");
-
-grunt.registerTask("default", ["phplint:good"]);
+grunt.loadNpmTasks('grunt-phplint');
+grunt.registerTask('phplint-source', [
+  'phplint-lint:source',
+  'phplint-report-original:source',
+  'phplint-check:source'
+);
 ```
 
-### Options
+Then run `grunt phplint-source`
 
-By default we assume that the `php` command is in your path, if not, you can specify the full path to php like the example below.  You can also pass additional flags, like '-lf'.
 
-To pass parameters to an argument:
+## Options
 
+By default we assume that the `php` command is in your path, if not, you can 
+specify the full path to php.
+
+
+### options.resultStorage
+
+Type: `string[]`
+
+Default: `['options', 'phplint-lint', 'result']`
+
+The lint result will be stored with [grunt.option.set()](http://gruntjs.com/api/grunt.option#grunt.option)
+
+
+### options.spawnLimit
+
+Type: `number`
+
+Default: `require('os').cpus().length`
+
+
+### options.cache
+
+Type: `object`
+
+Default: `{engine: 'file', ttl: 36000, prefix: null, delimiter: ':'}`
+
+In the background this package uses [cacheman](https://www.npmjs.com/package/cacheman)
+to speed up the linting.
+There are different configuration options for each cache engine.
+
+***Common***
 ```javascript
-var cfg = {
-	phplint: {
-		options: {
-			phpArgs: {
-				"-d": null,
-				"-f": null,
-				"-c": "/usr/local/my-debug-config.ini"
-			}
-		},
-		good: ["test/rsrc/*-good.php"],
-		bad: ["test/rsrc/*-fail.php"]
-	}
-};
+{
+  engine: string;
+  prefix?: string;
+  delimiter?: string;
+  ttl?: number;
+  count?: number;
+}
 ```
 
-To pass multiple parameters to the -d argument:  
-
+**file**
 ```javascript
-var cfg = {
-	phplint: {
-		options: {
-			phpArgs: {
-				"-d": null,
-				"-f": null,
-				"-d": ["display_errors", "display_startup_errors"]
-			}
-		},
-		good: ["test/rsrc/*-good.php"],
-		bad: ["test/rsrc/*-fail.php"]
-	}
-};
+{
+  tmpDir?: string;
+}
 ```
 
-Passing in your own special configuration file or using -n to remove configuration files can be helpful when the lint fails but no errors are output to the stdout.  If you need to log these errors, consider a plugin like grunt-log to facilitate this.
-
-Lastly, if you want to limit the number of files we process at a time, set the spawnLimit.
-
+**redis**
 ```javascript
-var cfg = {
-	phplint: {
-		options: {
-			phpCmd: "/usr/bin/php", // Or "c:\EasyPHP-5.3.8.1\PHP.exe".
-			spawnLimit: 10
-		},
+{             
+  password?: string; 
+  host?: string;
+  port?: number;
+  database?: number;
+}
+```
 
-		good: ["test/rsrc/*-good.php"],
-		bad: ["test/rsrc/*-fail.php"]
-	}
-};
+**mongo**
+```javascript
+{
+  username?: string;
+  password?: string;
+  host?: string;
+  port?: number;
+  database?: string;
+  collection?: string;
+  compression?: boolean;
+}
 ```
 
 
+### options.cacheClear
 
-### Caching
+Type: `boolean`
 
-As of version 0.0.3, we cache previously hinted files to improve performance.  This is done by taking a hash of the contents of a file and checking it against previously successful linted files content hashes.
+Default: `false`
 
-By default, we will use the `os.tmpDir()` as the location for holding our swapped files (the files are empty, just placeholders).  To change this you can pass in a `swapPath` option:
+Set to `true` to clear the configured cache. **When `true` won't lint any file**.
+Usually you don't need to set it *true* in the *options*, because you can 
+control the cache clear from CLI flags. `grunt phplint-lint:foo:cache-clear`
 
+
+### options.php
+
+Multiple PHP executable definition.
+
+Type: `object`
+
+Default:
 ```javascript
-var cfg = {
-	phplint: {
-		options: {
-			swapPath: "/some/crazy/path/to/temp/dir"
-		},
+{
+  custom: {
 
-		good: ["test/rsrc/*-good.php"],
-		bad: ["test/rsrc/*-fail.php"]
-	}
-};
+    /**
+     * Is this PHP variant enabled or not?
+     *
+     * @type {boolean}
+     */
+    enabled: true
+    
+    /**
+     * Path to PHP executable.
+     *
+     * @type {string}
+     */
+    executable: 'php';
+
+    args?: {
+    
+      /**
+       * If not empty then the value will be added to the CLI command like this:
+       * `php -c 'path/to/php.ini'`
+       *
+       * @type {string}
+       */
+      config: null;
+    
+      /**
+       * Keys which have *true* value will be added as a '-d' option to the CLI 
+       * command.
+       *
+       * Example: {define: {'short_open_tag=Off': true}}
+       *
+       * @type {[key: string]: boolean}
+       */
+      define: {}
+    };
+  }
+}
 ```
+
+**Example**
+```javascript
+grunt.config({
+  'phplint-lint': {
+    options: {
+      php: {
+        'my-php-55': {
+          executable: 'path/to/php/5.5/bin/php'
+          args: {
+            define: {
+              'short_open_tag=Off': true
+            }
+          }
+        },
+        'my-php-56': {
+          executable: 'path/to/php/5.6/bin/php'
+        }
+      }
+    },
+    'php55-and-php56': {
+      files: [
+        {
+          src: [
+            'source/**/*.php'
+          ]
+        }
+      ]
+    },
+    'disable-php55': {
+      options: {
+        php: {
+          'my-php-55': {
+            enabled: false
+          }
+        }
+      },
+      files: [
+        {
+          src: [
+            'source/**/*.php'
+          ]
+        }
+      ]
+    }
+  },
+});
+```
+
 
 ### License
 

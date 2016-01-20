@@ -1,0 +1,23 @@
+
+instrumentation:
+  root: '.'
+  include-all-sources: true
+  excludes:
+    - 'reports/**/*.js'
+    - 'src/**/*.js'
+    - 'Gruntfile.test.js'
+
+reporting:
+  dir: './reports/coverage'
+
+check:
+  global:
+    statements: 90
+    branches: 80
+    lines: 90
+    functions: 100
+  each:
+    statements: 90
+    branches: 80
+    lines: 90
+    functions: 100

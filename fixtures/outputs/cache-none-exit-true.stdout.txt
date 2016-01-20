@@ -1,0 +1,5 @@
+Running "phplint-lint:cache-none-exit-true" (phplint-lint) task
+
+Running "phplint-check:subjects" (phplint-check) task
+
+Done, without errors.

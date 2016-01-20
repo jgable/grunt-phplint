@@ -1,4 +1,16 @@
 
-/*
+/**
 
+!/lib/**/*.d.ts
+!/lib/**/*.js
+!/lib/**/*.js.map
+!/tasks/**/*.d.ts
 !/tasks/**/*.js
+!/tasks/**/*.js.map
+!/typings/main/ambient/cacheman/**/*.d.ts
+!/typings/main/ambient/cacheman-*/**/*.d.ts
+!/typings/main/ambient/grunt-phplint/**/*.d.ts
+
+!/index.d.ts
+!/npm-shrinkwrap.json
+!/typings.json

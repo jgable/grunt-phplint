@@ -1,0 +1,6 @@
+Running "phplint-lint:cache-none-exit-false" (phplint-lint) task
+
+Running "phplint-check:subjects" (phplint-check) task
+Warning: Number of lint errors: 1. Use --force to continue.
+
+Aborted due to warnings.

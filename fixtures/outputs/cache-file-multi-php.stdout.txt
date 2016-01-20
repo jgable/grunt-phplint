@@ -1,0 +1,48 @@
+Running "phplint-lint:cache-file-multi-php" (phplint-lint) task
+
+Running "phplint-report-original:subjects" (phplint-report-original) task
+>> {{ php55 }} -n -d short_open_tag=0 -d asp_tags=0 -l
+>> Fatal error: Arrays are not allowed as constants in fixtures/subjects/le-55-sot0-0.php on line 17
+>> Errors parsing fixtures/subjects/le-55-sot0-0.php
+>> ---
+>> {{ php55 }} -n -d short_open_tag=0 -d asp_tags=0 -l
+>> Fatal error: Arrays are not allowed as constants in fixtures/subjects/le-56-sot0-0.php on line 17
+>> Errors parsing fixtures/subjects/le-56-sot0-0.php
+>> ---
+>> {{ php56 }} -n -d short_open_tag=0 -d asp_tags=0 -l
+>> Parse error: syntax error, unexpected ':', expecting '{' in fixtures/subjects/le-56-sot0-0.php on line 21
+>> Errors parsing fixtures/subjects/le-56-sot0-0.php
+>> ---
+>> {{ php55 }} -n -d short_open_tag=0 -d asp_tags=0 -l
+>> Fatal error: Arrays are not allowed as constants in fixtures/subjects/le-56-sot0-1.php on line 17
+>> Errors parsing fixtures/subjects/le-56-sot0-1.php
+>> ---
+>> {{ php55 }} -n -d short_open_tag=0 -d asp_tags=0 -l
+>> Fatal error: Arrays are not allowed as constants in fixtures/subjects/le-70-sot0-0.php on line 17
+>> Errors parsing fixtures/subjects/le-70-sot0-0.php
+>> ---
+>> {{ php56 }} -n -d short_open_tag=0 -d asp_tags=0 -l
+>> Parse error: syntax error, unexpected ':', expecting '{' in fixtures/subjects/le-70-sot0-0.php on line 21
+>> Errors parsing fixtures/subjects/le-70-sot0-0.php
+>> ---
+>> {{ php70 }} -n -l
+>> Parse error: syntax error, unexpected '/' in fixtures/subjects/le-70-sot0-0.php on line 25
+>> Errors parsing fixtures/subjects/le-70-sot0-0.php
+>> ---
+>> {{ php55 }} -n -d short_open_tag=0 -d asp_tags=0 -l
+>> Fatal error: Arrays are not allowed as constants in fixtures/subjects/le-70-sot0-1.php on line 17
+>> Errors parsing fixtures/subjects/le-70-sot0-1.php
+>> ---
+>> {{ php56 }} -n -d short_open_tag=0 -d asp_tags=0 -l
+>> Parse error: syntax error, unexpected ':', expecting '{' in fixtures/subjects/le-70-sot0-1.php on line 21
+>> Errors parsing fixtures/subjects/le-70-sot0-1.php
+>> ---
+>> {{ php70 }} -n -l
+>> Parse error: syntax error, unexpected '/' in fixtures/subjects/le-70-sot1-0.php on line 25
+>> Errors parsing fixtures/subjects/le-70-sot1-0.php
+>> ---
+>> 5 errors with `{{ php55 }} -n -d short_open_tag=0 -d asp_tags=0 -l FILE_NAME`
+>> 3 errors with `{{ php56 }} -n -d short_open_tag=0 -d asp_tags=0 -l FILE_NAME`
+>> 2 errors with `{{ php70 }} -n -l FILE_NAME`
+
+Done, without errors.
