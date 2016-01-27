@@ -62,7 +62,7 @@ var cfg = {
 };
 ```
 
-Passing in your own special configuration file or using -n to remove configuration files can be helpful when the lint fails but no errors are output to the stdin.  If you need to log these errors, consider a plugin like grunt-log to facilitate this.
+Passing in your own special configuration file or using -n to remove configuration files can be helpful when the lint fails but no errors are output to the stdout.  If you need to log these errors, consider a plugin like grunt-log to facilitate this.
 
 Lastly, if you want to limit the number of files we process at a time, set the spawnLimit.
 
