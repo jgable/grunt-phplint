@@ -1,0 +1,16 @@
+{
+  "name": "grunt-phplint",
+  "main": "index.d.ts",
+  "ambientDependencies": {
+    "async": "github:DefinitelyTyped/DefinitelyTyped/async/async.d.ts#a940132c9667d664811a8aea16a09618ff3d40fe",
+    "gruntjs": "github:DefinitelyTyped/DefinitelyTyped/gruntjs/gruntjs.d.ts#9cb096f5de68d76b1faecde6f233b193f0736b6a",
+    "lodash": "github:DefinitelyTyped/DefinitelyTyped/lodash/lodash.d.ts#86dbea8fc37d9473fee465da4f0a21bea4f8cbd9",
+    "node": "github:DefinitelyTyped/DefinitelyTyped/node/node.d.ts#1c56e368e17bb28ca57577250624ca5bd561aa81"
+  },
+  "ambientDevDependencies": {
+    "assertion-error": "github:DefinitelyTyped/DefinitelyTyped/assertion-error/assertion-error.d.ts#800a7047cf275cc9f695cbd116748cd408a09d6d",
+    "chai": "github:DefinitelyTyped/DefinitelyTyped/chai/chai.d.ts#9c25433c84251bfe72bf0030a95edbbb2c81c9d5",
+    "mocha": "github:DefinitelyTyped/DefinitelyTyped/mocha/mocha.d.ts#d6dd320291705694ba8e1a79497a908e9f5e6617",
+    "mocha-node": "github:DefinitelyTyped/DefinitelyTyped/mocha/mocha-node.d.ts#098def61bc44ee29dae7e7a5c719873195086ac2"
+  }
+}

@@ -1,0 +1,14 @@
+Running "phplint-lint:cache-file-exit-false" (phplint-lint) task
+
+Running "phplint-report-original:subjects" (phplint-report-original) task
+>> php -n -d short_open_tag=0 -d asp_tags=0 -l
+>> Parse error: syntax error, unexpected ':', expecting '{' in fixtures/subjects/le-56-sot0-0.php on line 21
+>> Errors parsing fixtures/subjects/le-56-sot0-0.php
+>> ---
+>> php -n -d short_open_tag=0 -d asp_tags=0 -l
+>> Parse error: syntax error, unexpected ':', expecting '{' in fixtures/subjects/le-70-sot0-0.php on line 21
+>> Errors parsing fixtures/subjects/le-70-sot0-0.php
+>> ---
+>> 2 errors with `php -n -d short_open_tag=0 -d asp_tags=0 -l FILE_NAME`
+
+Done, without errors.

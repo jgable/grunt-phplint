@@ -1,0 +1,34 @@
+{
+  "compilerOptions": {
+    "target": "ES5",
+    "module": "commonjs",
+    "outDir": "..",
+    "removeComments": true,
+    "sourceMap": true,
+    "declaration": true
+  },
+  "files": [
+    "../typings/main/ambient/cacheman/cacheman.d.ts",
+    "../typings/main/ambient/cacheman-file/cacheman-file.d.ts",
+    "../typings/main/ambient/cacheman-memory/cacheman-memory.d.ts",
+    "../typings/main/ambient/cacheman-mongo/cacheman-mongo.d.ts",
+    "../typings/main/ambient/cacheman-redis/cacheman-redis.d.ts",
+    "../typings/main/ambient/grunt-phplint/grunt-phplint.d.ts",
+    "../typings/main/ambient/grunt-phplint/gruntjs.d.ts",
+    "../typings/main/ambient/rmdir/rmdir.d.ts",
+    "../typings/main.d.ts",
+    "lib/grunt/tasks/CheckTask.ts",
+    "lib/grunt/tasks/LintTask.ts",
+    "lib/grunt/tasks/ReportOriginalTask.ts",
+    "lib/ExitCode.ts",
+    "tasks/phplint-check.ts",
+    "tasks/phplint-lint.ts",
+    "tasks/phplint-report-original.ts",
+    "test/lib/grunt/tasks/CheckTaskTest.ts",
+    "test/lib/grunt/tasks/LintTaskTest.ts",
+    "test/lib/grunt/tasks/ReportOriginalTaskTest.ts",
+    "test/tasks/phplintTest.ts",
+    "test/env.ts",
+    "Gruntfile.test.ts"
+  ]
+}

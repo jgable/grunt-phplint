@@ -1,0 +1,14 @@
+Running tasks: phplint-lint:empty:no-cache, phplint-report-original:subjects
+
+Running "phplint-lint:empty:no-cache" (phplint-lint) task
+Verifying property phplint-lint.empty exists in config...OK
+Files: [no src]
+Options: cache=null
+
+Running "phplint-report-original:subjects" (phplint-report-original) task
+Verifying property phplint-report-original.subjects exists in config...OK
+File: [no files]
+Options: (none)
+>> 0 error in 0 files
+
+Done, without errors.

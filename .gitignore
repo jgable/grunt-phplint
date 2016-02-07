@@ -1,5 +1,27 @@
 
+/lib/
 /node_modules/
+/reports/
+/tasks/
+/test/
+
+/typings/browser/
+/typings/browser.d.ts
+
+/typings/main.d.ts
+/typings/main/ambient/*
+!/typings/main/ambient/cacheman/
+!/typings/main/ambient/cacheman-*/
+!/typings/main/ambient/grunt-phplint/
+!/typings/main/ambient/rmdir/
+/typings/main/definitions/
+/typings/tsd.d.ts
 
 # Exclude the generated file of `npm pack`.
 /grunt-phplint-*.tgz
+
+/Gruntfile.test.d.ts
+/Gruntfile.test.js
+/Gruntfile.test.js.map
+
+/index.d.ts

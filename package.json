@@ -19,18 +19,49 @@
   ],
   "author": "Jacob Gable <jacob.gable@gmail.com>",
   "license": "MIT",
-  "devDependencies": {
-    "jshint": "^2.8.0",
-    "mocha": "~2.3.4",
-    "should": "~8.1.1"
-  },
   "dependencies": {
+    "async": "^1.5.2",
     "grunt": "~0.4.1",
-    "cache-swap": "~0.2.3"
+    "lodash": "^4.0.0"
+  },
+  "optionalDependencies": {
+    "cacheman": "^2.1.0",
+    "cacheman-file": "^0.1.0",
+    "cacheman-mongo": "^1.0.1",
+    "cacheman-redis": "^1.1.2",
+    "kerberos": "0.0.18"
+  },
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "istanbul": "^0.4.2 ",
+    "mocha": "^2.3.4",
+    "mock-utf8-stream": "^0.1.1",
+    "rmdir": "^1.2.0",
+    "tmp": "0.0.28",
+    "tslint": "^3.3.0",
+    "typescript": "^1.7.5",
+    "typings": "^0.6.3"
   },
   "scripts": {
-    "test": "npm run lint && mocha",
-    "lint": "npm run lint-jshint",
-    "lint-jshint": "jshint 'tasks/' 'test/'"
+    "get-started": "npm run typings && npm run tsc && npm run generate-typings-index && npm run gem-install",
+    "gem-install": "bundle check || bundle install",
+    "typings": "npm run typings-install && npm run typings-link",
+    "typings-install": "typings install",
+    "typings-link": "typings link",
+    "lint": "npm run lint-tslint && npm run lint-travis",
+    "lint-tslint": "tslint --config tslint.json --format verbose $(git ls-files -- '*.ts')",
+    "lint-travis": "bundle exec travis lint .travis.yml --no-interactive",
+    "pretsc": "npm run clear-src",
+    "tsc": "tsc --project src",
+    "generate-typings-index": "echo '' > index.d.ts; for f in $(find * -type f -and -size '+0w' -and \\( -wholename 'lib/*.d.ts' -or -wholename 'tasks/*.d.ts' \\)); do echo '/// <reference path=\"'${f}'\" />' >> index.d.ts; done;",
+    "clear": "npm run clear-dist && npm run clear-coverage",
+    "clear-src": "rm -rf lib tasks test Gruntfile.test.{js,d.ts,js.map}",
+    "clear-coverage": "rm -rf reports/coverage reports/coverage-parts",
+    "test": "npm run test-istanbul",
+    "pretest-istanbul": "npm run clear-coverage",
+    "test-istanbul": "istanbul cover --dir ./reports/coverage-parts/00 _mocha -- --timeout 60000 --recursive './test/**/*Test.js'",
+    "posttest-istanbul": "npm run istanbul-reports-merge && npm run istanbul-check-coverage",
+    "istanbul-reports-merge": "istanbul report --report lcov --report json --dir ./reports/coverage --include './reports/coverage-parts/*/coverage*.json'",
+    "istanbul-check-coverage": "istanbul check-coverage"
   }
 }
