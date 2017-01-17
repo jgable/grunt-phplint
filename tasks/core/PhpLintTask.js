@@ -19,7 +19,7 @@ function PhpLintTask(task) {
 
 	this.options = task.options({
 		spawnLimit: 10,
-		swapPath: os.tmpDir(),
+		swapPath: os.tmpdir(),
 		cache: true,
 		phpCmd: 'php'
 	});

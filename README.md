@@ -86,7 +86,7 @@ var cfg = {
 
 As of version 0.0.3, we cache previously hinted files to improve performance.  This is done by taking a hash of the contents of a file and checking it against previously successful linted files content hashes.
 
-By default, we will use the `os.tmpDir()` as the location for holding our swapped files (the files are empty, just placeholders).  To change this you can pass in a `swapPath` option:
+By default, we will use the `os.tmpdir()` as the location for holding our swapped files (the files are empty, just placeholders).  To change this you can pass in a `swapPath` option:
 
 ```javascript
 var cfg = {
